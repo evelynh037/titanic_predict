@@ -1,0 +1,6 @@
+.DS_Store
+src/data/
+*.env
+src/titanic_env
+__pycache__/
+.ipynb_checkpoints
