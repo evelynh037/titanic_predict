@@ -6,6 +6,7 @@ Both implementations are fully containerized using **Docker**, making them repro
 ---
 
 ## Repository Structure
+```
 TITANIC_PREDICT/
 │
 ├── src/
@@ -27,7 +28,7 @@ TITANIC_PREDICT/
 ├── output_log_python.txt             # Output log from Python (created after running container)
 ├── output_log_r.txt                  # Output log from R (created after running container)
 └── README.md                         # Project documentation
-
+```
 ## Setup
 
 ### Clone the Repository
@@ -47,10 +48,12 @@ Place all three inside:
 titanic_predict/src/data/
 
 Your folder should look like this:
+```
 src/data/
 ├── train.csv
 ├── test.csv
 └── gender_submission.csv
+```
 
 ### (Optional) Create Your Own Virtual Environment
 # Create and activate a virtual environment
