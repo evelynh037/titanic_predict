@@ -77,7 +77,7 @@ cd titanic_predict
 * Build the Docker image
 
 ```bash
-docker build -f src/python_code/Dockerfile -t titanic_python src/
+docker build -f Dockerfile_python -t titanic_python .
 ```
 
 * Run the container
@@ -91,7 +91,7 @@ docker run -v $(pwd):/app titanic_python
 * Build the Docker image
 
 ```bash
-docker build -f src/python_code/Dockerfile -t titanic_r src/
+docker build -f Dockerfile_r -t titanic_r .
 ```
 
 * Run the container
