@@ -58,15 +58,19 @@ src/data/
 
 ## (Optional) Create Your Own Virtual Environment
 #### Create and activate a virtual environment
-python3 -m venv titanic_env
 
+```bash
+python3 -m venv titanic_env
 source titanic_env/bin/activate
+```
 
 ## Run the model and get predictions!
 
 ### Run the Models Using Docker
 
+```bash
 cd titanic_predict
+```
 
 - For python:
 
