@@ -56,8 +56,8 @@ src/data/
 └── gender_submission.csv
 ```
 
-### (Optional) Create Your Own Virtual Environment
-# Create and activate a virtual environment
+## (Optional) Create Your Own Virtual Environment
+#### Create and activate a virtual environment
 python3 -m venv titanic_env
 
 source titanic_env/bin/activate
@@ -72,21 +72,29 @@ cd titanic_predict
 
 * Build the Docker image
 
+```bash
 docker build -f src/python_code/Dockerfile -t titanic_python src/
+```
 
 * Run the container
 
+```bash
 docker run -v $(pwd):/app titanic_python
+```
 
 - For R:
 
 * Build the Docker image
 
+```bash
 docker build -f src/python_code/Dockerfile -t titanic_r src/
+```
 
 * Run the container
 
+```bash
 docker run -v $(pwd):/app titanic_r
+```
 
 * Output
 
@@ -96,6 +104,7 @@ docker run -v $(pwd):/app titanic_r
 
 ### Check the results
 
+```
 output_log_r.txt
-
 output_log_python.txt
+```
