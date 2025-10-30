@@ -34,7 +34,7 @@ TITANIC_PREDICT/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/titanic_predict.git
+git clone [https://github.com/yourusername/titanic_predict.git](https://github.com/evelynh037/titanic_predict.git)
 cd titanic_predict
 ```
 
