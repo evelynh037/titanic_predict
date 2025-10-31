@@ -10,42 +10,39 @@ LOG_PATH = "/app/output_log_python.txt"
 if os.path.exists(LOG_PATH):
     os.remove(LOG_PATH)
 
-def log_message(message):
-    with open(LOG_PATH, "a") as f:
-        f.write(message + "\n")
         
         
 # Load training and test data
 train = pd.read_csv("src/data/train.csv")
 test = pd.read_csv("src/data/test.csv")
-log_message('Read in train and test data')
+print('Read in train and test data')
 
 # Feature selection
 train = train[["Survived", "Pclass", "Sex", "Age", "Fare", "Embarked"]]
-log_message('Keep "Survived", "Pclass", "Sex", "Age", "Fare", "Embarked" as predictors')
+print('Keep "Survived", "Pclass", "Sex", "Age", "Fare", "Embarked" as predictors')
 
 # Preprocessing
 # Convert Sex to binary
 train["Sex"] = train["Sex"].map({"male": 0, "female": 1})
-log_message('Convert Sex into numerical binary: male(0) and female(1)')
+print('Convert Sex into numerical binary: male(0) and female(1)')
 
 # Fill missing Embarked values with most frequent category
 most_common_embarked = train["Embarked"].mode()[0]
 train["Embarked"] = train["Embarked"].fillna(most_common_embarked)
-log_message(f'Fill missing Embarked values with most frequent category {most_common_embarked}')
+print(f'Fill missing Embarked values with most frequent category {most_common_embarked}')
 
 # Fill missing Age values grouped by Pclass and Sex
 train['Age'] = train.groupby(['Pclass','Sex'])['Age'].transform(lambda x: x.fillna(x.median()))
-log_message("Fill missing Age values grouped by Pclass and Sex")
+print("Fill missing Age values grouped by Pclass and Sex")
 
 # One-hot encode Embarked
 train = pd.get_dummies(train, columns=["Embarked"], drop_first=True)
-log_message('One-hot encode Embarked')
+print('One-hot encode Embarked')
 
 # Standardize Age and log-transform Fare
 train["Age"] = (train["Age"] - train["Age"].mean()) / train["Age"].std()
 train["Fare"] = np.log1p(train["Fare"])
-log_message('Standardize Age and log-transform Fare')
+print('Standardize Age and log-transform Fare')
 
 # Train and fit logistic regression
 X = train.drop("Survived", axis=1)
@@ -54,12 +51,12 @@ X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_st
 
 model = LogisticRegression(max_iter=200)
 model.fit(X_train, y_train)
-log_message('Train and fit logistic regression')
+print('Train and fit logistic regression')
 
 # Validate
 y_pred = model.predict(X_val)
 accuracy = accuracy_score(y_val, y_pred)
-log_message(f"Validation Accuracy: {accuracy:.4f}")
+print(f"Validation Accuracy: {accuracy:.4f}")
 
 # Prepare test data with the same procedure as test data
 test = test[["Pclass", "Sex", "Age", "Fare", "Embarked"]]
@@ -71,13 +68,19 @@ test["Age"] = (test["Age"] - test["Age"].mean()) / test["Age"].std()
 test["Fare"] = test["Fare"].fillna(test["Fare"].median())
 test["Fare"] = np.log1p(test["Fare"])
 
-log_message("Prepare test data with the same procedures performed on the test data, fill empty fare cell with medium fare")
+print("Prepare test data with the same procedures performed on the test data, fill empty fare cell with medium fare")
 
 # Predict on test data
 test_pred = model.predict(test)
-log_message("Make prediction on test set...")
+print("Make prediction on test set...")
+
+# dump the predictions into the txt file
+with open(LOG_PATH, "a") as f:
+    f.write("Test Predictions:\n")
+    for pred in test_pred:
+        f.write(f"{pred}\n")
 
 # Test accuracy
 correct_answers = pd.read_csv("src/data/gender_submission.csv")
 test_accuracy = accuracy_score(correct_answers["Survived"], test_pred)
-log_message(f"Test Accuracy: {test_accuracy:.4f}")
+print(f"Test Accuracy: {test_accuracy:.4f}")
