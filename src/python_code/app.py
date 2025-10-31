@@ -80,7 +80,4 @@ with open(LOG_PATH, "a") as f:
     for pred in test_pred:
         f.write(f"{pred}\n")
 
-# Test accuracy
-correct_answers = pd.read_csv("src/data/gender_submission.csv")
-test_accuracy = accuracy_score(correct_answers["Survived"], test_pred)
-print(f"Test Accuracy: {test_accuracy:.4f}")
+print(f"Predictions saved to output_log_python.txt")

@@ -42,9 +42,8 @@ cd titanic_predict
 Download data from https://www.kaggle.com/competitions/titanic/data
 * train.csv                      -training data
 * test.csv                       -testing features data
-* gender_submission.csv          -testing survival values   
 
-Place all three inside:
+Place all file inside:
 
 titanic_predict/src/data/
 
@@ -52,8 +51,7 @@ Your folder should look like this:
 ```
 src/data/
 ├── train.csv
-├── test.csv
-└── gender_submission.csv
+└── test.csv
 ```
 
 ## (Optional) Create Your Own Virtual Environment
