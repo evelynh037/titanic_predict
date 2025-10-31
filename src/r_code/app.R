@@ -94,7 +94,4 @@ writeLines("Test Predictions:", log_file)
 writeLines(as.character(test_pred), log_file)
 close(log_file)
 
-# Test accuracy
-correct_answers <- read_csv("/app/src/data/gender_submission.csv", show_col_types = FALSE)
-test_accuracy <- mean(test_pred == correct_answers$Survived)
-print(sprintf("Test Accuracy: %.4f", test_accuracy))
+print("Predictions saved to output_log_r.txt")
