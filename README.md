@@ -102,11 +102,11 @@ docker run -v $(pwd):/app titanic_r
 
 * Output
 
-	•	A file named output_log_r.txt will be created in the project root (titanic_predict/output_log_r.txt) containing model logs and accuracy results.
+	•	A file named output_log_r.txt will be created in the project root (titanic_predict/output_log_r.txt) containing model predictions.
 
     •	A file named output_log_python.txt will be created in the root folder (titanic_predict/output_log_python.txt).
 
-### Check the results
+### Check the prediction
 
 ```
 output_log_r.txt
